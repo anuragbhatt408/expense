@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import DefaultRouter from "./routes/defaultRoute.js";
 import UserRouter from "./routes/userRoutes.js";
+import ExpenseRouter from "./routes/expenseRoute.js";
 import ConnectDB from "./db/db.js";
 dotenv.config();
 
@@ -17,6 +18,8 @@ ConnectDB();
 app.use("/", DefaultRouter);
 
 app.use("/users", UserRouter);
+
+app.use("/expenses", ExpenseRouter);
 
 app.listen(PORT, () => {
   console.log(`server is running on port -> PORT -> http://localhost:${PORT}`);
