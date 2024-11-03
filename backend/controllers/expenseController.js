@@ -19,3 +19,19 @@ export const createExpense = async (req, res) => {
     });
   }
 };
+
+export const getExpenseById = async (req, res) => {
+  try {
+    const userId = await req.user_id;
+    const AllExpensesOfUserId = await Expense.find({ createdBy: userId });
+    res.status(201).json({
+      message: "Expense Fetched Successfully",
+      expenses: AllExpensesOfUserId,
+    });
+  } catch {
+    res.status(500).json({
+      error,
+      message: "Expense Fetching Failed",
+    });
+  }
+};
